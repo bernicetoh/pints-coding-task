@@ -1,65 +1,88 @@
 const express = require("express");
 const app = express();
 const API_key = process.env.IEX_API_KEY;
+app.listen(5001, () => console.log(API_key));
 
-app.get("/stocks/apple", async (req, res) => {
+app.get("/stocks", async (req, res) => {
+  const apple = await getAppleData();
+  const netflix = await getNetflixData();
+  const amazon = await getAmazonData();
+  const google = await getGoogleData();
+  const tesla = await getTeslaData();
+  res.send([apple, netflix, amazon, google, tesla]);
+});
+
+const getAppleData = async () => {
   const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/AAPL?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
   const result = await fetch(url);
   const json = await result.json();
-  res.send({
+  const data = {
+    company: json[0].companyName,
+    symbol: json[0].symbol,
     latestPrice: json[0].latestPrice,
     dollarChange: json[0].change,
     percentChange: json[0].changePercent,
     imgUrl: "https://storage.googleapis.com/iex/api/logos/AAPL.png",
-  });
-});
+  };
+  return data;
+};
 
-app.get("/stocks/netflix", async (req, res) => {
+const getNetflixData = async () => {
   const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/NFLX?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
   const result = await fetch(url);
   const json = await result.json();
-  res.send({
+  const data = {
+    company: json[0].companyName,
+    symbol: json[0].symbol,
     latestPrice: json[0].latestPrice,
     dollarChange: json[0].change,
     percentChange: json[0].changePercent,
     imgUrl: "https://storage.googleapis.com/iex/api/logos/NFLX.png",
-  });
-});
+  };
+  return data;
+};
 
-app.get("/stocks/google", async (req, res) => {
+const getGoogleData = async () => {
   const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/GOOG?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
   const result = await fetch(url);
   const json = await result.json();
-  res.send({
+  const data = {
+    company: json[0].companyName,
+    symbol: json[0].symbol,
     latestPrice: json[0].latestPrice,
     dollarChange: json[0].change,
     percentChange: json[0].changePercent,
     imgUrl: "https://storage.googleapis.com/iex/api/logos/GOOG.png",
-  });
-});
+  };
+  return data;
+};
 
-app.get("/stocks/amazon", async (req, res) => {
+const getAmazonData = async () => {
   const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/AMZN?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
   const result = await fetch(url);
   const json = await result.json();
-  res.send({
+  const data = {
+    company: json[0].companyName,
+    symbol: json[0].symbol,
     latestPrice: json[0].latestPrice,
     dollarChange: json[0].change,
     percentChange: json[0].changePercent,
     imgUrl: "https://storage.googleapis.com/iex/api/logos/AMZN.png",
-  });
-});
+  };
+  return data;
+};
 
-app.get("/stocks/tesla", async (req, res) => {
+const getTeslaData = async () => {
   const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/TSLA?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
   const result = await fetch(url);
   const json = await result.json();
-  res.send({
+  const data = {
+    company: json[0].companyName,
+    symbol: json[0].symbol,
     latestPrice: json[0].latestPrice,
     dollarChange: json[0].change,
     percentChange: json[0].changePercent,
     imgUrl: "https://storage.googleapis.com/iex/api/logos/TSLA.png",
-  });
-});
-
-app.listen(5001, () => console.log(API_key));
+  };
+  return data;
+};
