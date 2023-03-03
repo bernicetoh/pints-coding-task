@@ -29,10 +29,20 @@ const IndivContainer = ({ props }) => {
       <View style={styles.numbersContainer}>
         <Text style={styles.latestPriceText}>${toTwoDp(latestPrice)}</Text>
         <View style={styles.changeContainer}>
-          <Text style={[styles.dollarChangeText]}>
+          <Text
+            style={[
+              styles.dollarChangeText,
+              dollarChange > 0 ? { color: "green" } : { color: "red" },
+            ]}
+          >
             ${toTwoDp(dollarChange)}
           </Text>
-          <Text style={styles.percentChangeText}>
+          <Text
+            style={[
+              styles.percentChangeText,
+              percentChange > 0 ? { color: "green" } : { color: "red" },
+            ]}
+          >
             {toTwoDp(percentChange * 100)}%
           </Text>
         </View>
