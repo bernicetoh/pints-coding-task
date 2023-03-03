@@ -98,5 +98,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: "grey",
     position: "absolute",
+    resizeMode: "contain",
+    padding: 5,
   },
 });

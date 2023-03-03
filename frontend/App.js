@@ -18,9 +18,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View>
-        {data.map((c, index) => (
-          <IndivContainer props={c} key={index} />
-        ))}
+        {data !== undefined
+          ? data.map((c, index) => <IndivContainer props={c} key={index} />)
+          : console.log("loading data.......")}
       </View>
     </View>
   );
