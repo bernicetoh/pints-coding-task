@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-const API_key = process.env.IEX_API_KEY;
-app.listen(5001, () => console.log(API_key));
+app.listen(5001, () => console.log("Listening on port 5001"));
 
 app.get("/stocks", async (req, res) => {
   const apple = await getAppleData();
@@ -28,7 +28,8 @@ const getAppleData = async () => {
 };
 
 const getNetflixData = async () => {
-  const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/NFLX?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
+  const url =
+    "https://api.iex.cloud/v1/data/CORE/QUOTE/NFLX?token=sk_d5e0c93b5d2d403598570508dd0c645c";
   const result = await fetch(url);
   const json = await result.json();
   const data = {
@@ -43,7 +44,8 @@ const getNetflixData = async () => {
 };
 
 const getGoogleData = async () => {
-  const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/GOOG?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
+  const url =
+    "https://api.iex.cloud/v1/data/CORE/QUOTE/GOOG?token=sk_d5e0c93b5d2d403598570508dd0c645c";
   const result = await fetch(url);
   const json = await result.json();
   const data = {
@@ -58,7 +60,8 @@ const getGoogleData = async () => {
 };
 
 const getAmazonData = async () => {
-  const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/AMZN?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
+  const url =
+    "https://api.iex.cloud/v1/data/CORE/QUOTE/AMZN?token=sk_d5e0c93b5d2d403598570508dd0c645c";
   const result = await fetch(url);
   const json = await result.json();
   const data = {
@@ -73,7 +76,8 @@ const getAmazonData = async () => {
 };
 
 const getTeslaData = async () => {
-  const url = `https://api.iex.cloud/v1/data/CORE/QUOTE/TSLA?token=sk_d5e0c93b5d2d403598570508dd0c645c`;
+  const url =
+    "https://api.iex.cloud/v1/data/CORE/QUOTE/TSLA?token=sk_d5e0c93b5d2d403598570508dd0c645c";
   const result = await fetch(url);
   const json = await result.json();
   const data = {
