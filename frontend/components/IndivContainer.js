@@ -13,6 +13,15 @@ const IndivContainer = ({ props }) => {
     return parseFloat(number).toFixed(2);
   };
 
+  const getPriceChange = (priceChange) => {
+    const abs = Math.abs(toTwoDp(priceChange));
+    if (priceChange < 0) {
+      return `-$${abs}`;
+    } else {
+      return `$${abs}`;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -35,7 +44,7 @@ const IndivContainer = ({ props }) => {
               dollarChange > 0 ? { color: "green" } : { color: "red" },
             ]}
           >
-            ${toTwoDp(dollarChange)}
+            {getPriceChange(dollarChange)}
           </Text>
           <Text
             style={[

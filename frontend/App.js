@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import IndivContainer from "./components/IndivContainer";
 
 export default function App() {
