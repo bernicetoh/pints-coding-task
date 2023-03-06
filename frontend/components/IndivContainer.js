@@ -94,11 +94,11 @@ const styles = StyleSheet.create({
   img: {
     width: 50,
     height: 50,
-    borderRadius: "50%",
     borderWidth: 0.5,
     borderColor: "grey",
     position: "absolute",
     resizeMode: "contain",
     padding: 5,
+    borderRadius: 50,
   },
 });
