@@ -1,26 +1,32 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import IndivContainer from "./components/IndivContainer";
 
 export default function App() {
-  const [data, setData] = useState({});
-
-  const fetchData = async () => {
-    const result = await fetch("http://localhost:5001/stocks");
-    json = await result.json();
-    setData(json);
-  };
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    fetch("http://localhost:5001/stocks")
+      .then((res) => res.json())
+      .then((result) => {
+        setIsLoading(false);
+        setData(result);
+      });
   }, []);
+
   return (
     <View style={styles.container}>
       <View>
-        {data !== undefined
-          ? data.map((c, index) => <IndivContainer props={c} key={index} />)
-          : console.log("loading data.......")}
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          data.map((c, key) => {
+            return <IndivContainer props={c} key={key} />;
+          })
+        )}
       </View>
     </View>
   );
